@@ -214,7 +214,7 @@ def edit_post(post_id):
         title=post.title,
         subtitle=post.subtitle,
         # below the author is merely populated in the html page, it will serve to other purpose, nor be updated
-        author=post.author,
+        # author=post.author,
         img_url=post.img_url,
         body=post.body
     )
