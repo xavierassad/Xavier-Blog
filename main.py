@@ -11,16 +11,19 @@ from sqlalchemy import ForeignKey
 from datetime import date
 from flask_gravatar import Gravatar
 from functools import wraps
+from dotenv import load_dotenv
 import mimetypes
 import os
 
 mimetypes.add_type("application/javascript", ".js")
 mimetypes.add_type("text/css", ".css")
 
+load_dotenv()
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY_day_69")
 app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("XAVIER_BLOG_URL", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy()
 db.init_app(app)
