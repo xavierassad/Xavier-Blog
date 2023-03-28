@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         {% for post in all_posts %}
-        {{ author = db.session.execute(db.select(User).filter_by(id=post.author)).scalar_one() }}
+        {% set author = db.session.execute(db.select(User).filter_by(id=post.author)).scalar_one() %}
         <div class="post-preview">
           <a href="{{ url_for('show_post', post_id=post.id) }}">
             <h2 class="post-title">
