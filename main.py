@@ -244,7 +244,7 @@ def make_post():
             subtitle=form.subtitle.data,
             date=date.today().strftime("%B %d, %Y"),
             body=form.body.data,
-            author=current_user.name,
+            author=current_user.id,
             img_url=form.img_url.data
         )
         db.session.add(new_blog)
