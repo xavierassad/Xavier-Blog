@@ -11,14 +11,14 @@ from sqlalchemy import ForeignKey
 from datetime import date
 from flask_gravatar import Gravatar
 from functools import wraps
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import mimetypes
 import os
 
 mimetypes.add_type("application/javascript", ".js")
 mimetypes.add_type("text/css", ".css")
 
-load_dotenv()
+# load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY_day_69")
