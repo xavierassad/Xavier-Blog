@@ -57,6 +57,7 @@ class BlogPost(db.Model):
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
     author = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
+    author_name = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
     comments = relationship("Comments", backref="blog_posts", lazy=True)
 
@@ -68,8 +69,8 @@ class Comments(db.Model):
     author_id = db.Column(db.Integer, ForeignKey("users.id"))
     post_id = db.Column(db.Integer, ForeignKey("blog_posts.id"))
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 # ------------------------------------- DATABASE MODELS end --------------------------------------- #
 
@@ -214,7 +215,7 @@ def edit_post(post_id):
         title=post.title,
         subtitle=post.subtitle,
         # below the author is merely populated in the html page, it will serve to other purpose, nor be updated
-        # author=post.author,
+        # author_name=post.author_name,
         img_url=post.img_url,
         body=post.body
     )
@@ -245,6 +246,7 @@ def make_post():
             date=date.today().strftime("%B %d, %Y"),
             body=form.body.data,
             author=current_user.id,
+            author_name=current_user.name,
             img_url=form.img_url.data
         )
         db.session.add(new_blog)
