@@ -68,6 +68,9 @@ class Comments(db.Model):
     author_id = db.Column(db.Integer, ForeignKey("users.id"))
     post_id = db.Column(db.Integer, ForeignKey("blog_posts.id"))
 
+with app.app_context():
+    db.create_all()
+
 # ------------------------------------- DATABASE MODELS end --------------------------------------- #
 
 
